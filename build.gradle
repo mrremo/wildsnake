@@ -12,6 +12,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
@@ -36,6 +37,18 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+applicationName = "wildsnake"
+
+distributions {
+	main {
+		baseName ='wildsnake'
+	}
+}
+
+task stage{
+	dependsOn installDist
+}
+
 
 eclipse {
     classpath {
@@ -47,6 +60,4 @@ eclipse {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.7'
 }
-task stage {
-    dependsOn installDist
-}
+
